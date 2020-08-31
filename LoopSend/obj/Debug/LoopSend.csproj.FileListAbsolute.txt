@@ -1,0 +1,10 @@
+D:\NTUT\LoopSend\LoopSend\LoopSend\bin\Debug\LoopSend.exe.config
+D:\NTUT\LoopSend\LoopSend\LoopSend\bin\Debug\LoopSend.exe
+D:\NTUT\LoopSend\LoopSend\LoopSend\bin\Debug\LoopSend.pdb
+D:\NTUT\LoopSend\LoopSend\LoopSend\obj\Debug\LoopSend.csprojAssemblyReference.cache
+D:\NTUT\LoopSend\LoopSend\LoopSend\obj\Debug\LoopSend.Properties.Resources.resources
+D:\NTUT\LoopSend\LoopSend\LoopSend\obj\Debug\LoopSend.csproj.GenerateResource.cache
+D:\NTUT\LoopSend\LoopSend\LoopSend\obj\Debug\LoopSend.csproj.CoreCompileInputs.cache
+D:\NTUT\LoopSend\LoopSend\LoopSend\obj\Debug\LoopSend.exe
+D:\NTUT\LoopSend\LoopSend\LoopSend\obj\Debug\LoopSend.pdb
+D:\NTUT\LoopSend\LoopSend\LoopSend\obj\Debug\LoopSend.Form1.resources
