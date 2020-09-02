@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.intervalTime = new System.Windows.Forms.TextBox();
             this.sendTime = new System.Windows.Forms.TextBox();
@@ -41,10 +42,10 @@
             this.SendLog = new System.Windows.Forms.RichTextBox();
             this.ReceiveLog = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.disableLog = new System.Windows.Forms.CheckBox();
             this.SendButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.disableLog = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,6 +75,7 @@
             this.sendData.Name = "sendData";
             this.sendData.Size = new System.Drawing.Size(150, 29);
             this.sendData.TabIndex = 2;
+            this.sendData.Text = resources.GetString("sendData.Text");
             // 
             // selectBoard
             // 
@@ -131,6 +133,7 @@
             this.SendLog.Size = new System.Drawing.Size(350, 160);
             this.SendLog.TabIndex = 8;
             this.SendLog.Text = "";
+            this.SendLog.TextChanged += new System.EventHandler(this.SendLog_TextChanged);
             // 
             // ReceiveLog
             // 
@@ -159,12 +162,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "參數設定";
             // 
+            // disableLog
+            // 
+            this.disableLog.AutoSize = true;
+            this.disableLog.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.disableLog.Location = new System.Drawing.Point(23, 319);
+            this.disableLog.Name = "disableLog";
+            this.disableLog.Size = new System.Drawing.Size(120, 24);
+            this.disableLog.TabIndex = 9;
+            this.disableLog.Text = "關閉部分Log";
+            this.disableLog.UseVisualStyleBackColor = true;
+            // 
             // SendButton
             // 
             this.SendButton.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.SendButton.Location = new System.Drawing.Point(149, 315);
+            this.SendButton.Location = new System.Drawing.Point(149, 319);
             this.SendButton.Name = "SendButton";
-            this.SendButton.Size = new System.Drawing.Size(100, 30);
+            this.SendButton.Size = new System.Drawing.Size(97, 28);
             this.SendButton.TabIndex = 8;
             this.SendButton.Text = "執行";
             this.SendButton.UseVisualStyleBackColor = true;
@@ -189,17 +203,6 @@
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Receive";
-            // 
-            // disableLog
-            // 
-            this.disableLog.AutoSize = true;
-            this.disableLog.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.disableLog.Location = new System.Drawing.Point(23, 319);
-            this.disableLog.Name = "disableLog";
-            this.disableLog.Size = new System.Drawing.Size(120, 24);
-            this.disableLog.TabIndex = 9;
-            this.disableLog.Text = "關閉部分Log";
-            this.disableLog.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

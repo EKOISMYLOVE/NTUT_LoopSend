@@ -11,11 +11,13 @@ using System.Management;
 using System.IO.Ports;
 using System.Threading;
 
+
 namespace LoopSend
 {
     public partial class Form1 : Form
     {
         public string[] deviceList = { };
+        
 
 
         public Form1()
@@ -56,20 +58,26 @@ namespace LoopSend
         private void SendButton_Click(object sender, EventArgs e)
         {
             SendLog.AppendText("[*] 選擇Port為 " + deviceList[selectBoard.SelectedIndex].ToString()+ " 的開發版開始傳輸" + "\r\n");
+            //SendLog.AppendText("[*] 選擇Port為 " + "COM9" + " 的開發版開始傳輸" + "\r\n");
+            //SendLog.AppendText(deviceList[selectBoard.SelectedIndex].ToString());
 
             ConnectSerialDevice CSD = new ConnectSerialDevice(deviceList[selectBoard.SelectedIndex].ToString(), this);
             CSD._receiveLog = ReceiveLog;
+            
 
             SendLog.AppendText("[*] 間隔時間為 : " + intervalTime.Text + "\r\n");
             SendLog.AppendText("[*] 傳輸時間為 : " + sendTime.Text  + "\r\n");
 
             int count = 1;
+            //建立連線
+            CSD.Console_Connect();
 
             if (disableLog.Checked)
             {
                 for (int i = 0; i < Int32.Parse(sendTime.Text); i = i + Int32.Parse(intervalTime.Text))
                 {
-                    //CSD.SendData(sendData.Text);
+                    string data = "gatt get-data " + sendData.Text + "\r\n";
+                    CSD.SendData(sendData.Text);
                     //SendLog.AppendText("[*] 送出第" + count.ToString() + "筆資料:" + sendData.Text + "\r\n");
                     Thread.Sleep(Int32.Parse(intervalTime.Text));
                 }
@@ -78,14 +86,30 @@ namespace LoopSend
             {
                 for (int i = 0; i < Int32.Parse(sendTime.Text); i = i + Int32.Parse(intervalTime.Text))
                 {
-                    //CSD.SendData(sendData.Text);
-                    SendLog.AppendText("[*] 送出第" + count.ToString() + "筆資料:" + sendData.Text + "\r\n");
+                    //string data = "bt init";
+                    string data = "gatt get-data " + sendData.Text + "\r\n";
+                    //sendData.Text = "gatt get-data " + sendData.Text;
+
+                   
+                    CSD.SendData(data);
+                    SendLog.AppendText("[*] 送出第" + count.ToString() + "筆資料:" + data + "\r\n");
                     Thread.Sleep(Int32.Parse(intervalTime.Text));
                     count++;
                 }
             }
 
+            
+            SendLog.AppendText("[*] 執行gatt metrics result " + "\r\n");
+            CSD.SendData("gatt metrics result" + "\r\n");
+            Thread.Sleep(1000);
+            CSD.SendData("gatt metrics result" + "\r\n");
             SendLog.AppendText("[*] 傳輸完畢。" + "\r\n");
+            CSD.CloseComport();
+
+        }
+
+        private void SendLog_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
@@ -173,18 +197,18 @@ namespace LoopSend
                         Array.Resize(ref buffer, 1024);
 
                     }
-                    //Thread.Sleep(20);
+                    Thread.Sleep(20);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show("[!]" + ex.Message);
             }
         }
 
         public void ConsoleShow(RichTextBox rtb, string buffer)
         {
-
+            /*
             string target = "slave1";//要判斷的名稱
 
             if (role)
@@ -198,7 +222,7 @@ namespace LoopSend
                     address = "";
                 }
             }
-
+            */
             rtb.AppendText(buffer);
             /*
             bool b = buffer.Contains(target);//判斷是否有找到目標字串
@@ -242,7 +266,8 @@ namespace LoopSend
 
             if (sendBuffer != null)
             {
-                Byte[] buffer = sendBuffer as Byte[];
+                //Byte[] buffer = sendBuffer as Byte[];
+                Byte[] buffer = Encoding.ASCII.GetBytes(sendBuffer.ToString());
 
                 try
                 {
@@ -251,7 +276,7 @@ namespace LoopSend
                 catch (Exception ex)
                 {
                     CloseComport();
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                 }
             }
         }
