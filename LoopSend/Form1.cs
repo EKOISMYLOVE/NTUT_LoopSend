@@ -115,9 +115,9 @@ namespace LoopSend
                     CSD.SendData(data);
                     CSD.SendData(data);
                     CSD.SendData(data);
-                    
-                    CSD.SendData(data);
                     /*
+                    CSD.SendData(data);
+                    
                     CSD.SendData(data);
                     */
 
