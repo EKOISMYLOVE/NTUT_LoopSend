@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.intervalTime = new System.Windows.Forms.TextBox();
             this.sendTime = new System.Windows.Forms.TextBox();
@@ -55,27 +54,27 @@
             // intervalTime
             // 
             this.intervalTime.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.intervalTime.Location = new System.Drawing.Point(96, 145);
+            this.intervalTime.Location = new System.Drawing.Point(130, 145);
             this.intervalTime.Name = "intervalTime";
-            this.intervalTime.Size = new System.Drawing.Size(150, 29);
+            this.intervalTime.Size = new System.Drawing.Size(116, 29);
             this.intervalTime.TabIndex = 0;
             // 
             // sendTime
             // 
             this.sendTime.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.sendTime.Location = new System.Drawing.Point(96, 189);
+            this.sendTime.Location = new System.Drawing.Point(130, 189);
             this.sendTime.Name = "sendTime";
-            this.sendTime.Size = new System.Drawing.Size(150, 29);
+            this.sendTime.Size = new System.Drawing.Size(116, 29);
             this.sendTime.TabIndex = 1;
             // 
             // sendData
             // 
             this.sendData.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.sendData.Location = new System.Drawing.Point(96, 240);
+            this.sendData.Location = new System.Drawing.Point(130, 240);
             this.sendData.Name = "sendData";
-            this.sendData.Size = new System.Drawing.Size(150, 29);
+            this.sendData.Size = new System.Drawing.Size(116, 29);
             this.sendData.TabIndex = 2;
-            this.sendData.Text = resources.GetString("sendData.Text");
+            this.sendData.Text = "ABCDEF";
             // 
             // selectBoard
             // 
@@ -99,12 +98,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label2.Location = new System.Drawing.Point(19, 148);
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(19, 145);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.Size = new System.Drawing.Size(105, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "間隔時間";
+            this.label2.Text = "間隔時間(ms)";
             // 
             // label3
             // 
@@ -114,7 +113,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "傳送時間";
+            this.label3.Text = "傳送次數";
             // 
             // label4
             // 
@@ -166,7 +165,7 @@
             // 
             this.disableLog.AutoSize = true;
             this.disableLog.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.disableLog.Location = new System.Drawing.Point(23, 319);
+            this.disableLog.Location = new System.Drawing.Point(23, 336);
             this.disableLog.Name = "disableLog";
             this.disableLog.Size = new System.Drawing.Size(120, 24);
             this.disableLog.TabIndex = 9;
@@ -176,7 +175,7 @@
             // SendButton
             // 
             this.SendButton.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.SendButton.Location = new System.Drawing.Point(149, 319);
+            this.SendButton.Location = new System.Drawing.Point(149, 336);
             this.SendButton.Name = "SendButton";
             this.SendButton.Size = new System.Drawing.Size(97, 28);
             this.SendButton.TabIndex = 8;

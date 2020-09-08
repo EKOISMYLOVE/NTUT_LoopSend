@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Management;
 using System.IO.Ports;
 using System.Threading;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 
 namespace LoopSend
@@ -17,11 +19,15 @@ namespace LoopSend
     public partial class Form1 : Form
     {
         public string[] deviceList = { };
-        
+        [DllImport("kernel32.dll")]
+        extern static short QueryPerformanceCounter(ref long x);
+        [DllImport("kernel32.dll")]
+        extern static short QueryPerformanceFrequency(ref long x);
 
 
         public Form1()
         {
+
             InitializeComponent();
 
             var searcher = new ManagementObjectSearcher("SELECT * FROM WIN32_SerialPort");
@@ -74,7 +80,7 @@ namespace LoopSend
 
             if (disableLog.Checked)
             {
-                for (int i = 0; i < Int32.Parse(sendTime.Text); i = i + Int32.Parse(intervalTime.Text))
+                for (int i = 0; i < Int32.Parse(sendTime.Text); i++)
                 {
                     string data = "gatt get-data " + sendData.Text + "\r\n";
                     CSD.SendData(sendData.Text);
@@ -84,18 +90,54 @@ namespace LoopSend
             }
             else
             {
-                for (int i = 0; i < Int32.Parse(sendTime.Text); i = i + Int32.Parse(intervalTime.Text))
+                long freq = 0;
+                long start_Value = 0;
+                long stop_Value = 0;
+                //QueryPerformanceFrequency(ref freq);
+                //QueryPerformanceCounter(ref start_Value);
+                
+                for (int i = 0; i < Int32.Parse(sendTime.Text); i++)
                 {
                     //string data = "bt init";
                     string data = "gatt get-data " + sendData.Text + "\r\n";
                     //sendData.Text = "gatt get-data " + sendData.Text;
 
-                   
+
+                    QueryPerformanceFrequency(ref freq);
+                    QueryPerformanceCounter(ref start_Value);
+
                     CSD.SendData(data);
+                    
+                    CSD.SendData(data);
+                    CSD.SendData(data);
+                    CSD.SendData(data);
+                    CSD.SendData(data);
+                    CSD.SendData(data);
+                    CSD.SendData(data);
+                    CSD.SendData(data);
+                    
+                    CSD.SendData(data);
+                    /*
+                    CSD.SendData(data);
+                    */
+
+                    QueryPerformanceCounter(ref stop_Value);
+                    var time = (stop_Value - start_Value) / (double)freq * 1000;
+                    SendLog.AppendText("[*] 花費時間 : " + time.ToString());
+
+
+
                     SendLog.AppendText("[*] 送出第" + count.ToString() + "筆資料:" + data + "\r\n");
                     Thread.Sleep(Int32.Parse(intervalTime.Text));
                     count++;
+
+
+                    
+
                 }
+                //QueryPerformanceCounter(ref stop_Value);
+                //var time = (stop_Value - start_Value) / (double)freq * 1000;
+                //SendLog.AppendText("[*] 花費時間 : " + time.ToString());
             }
 
             
